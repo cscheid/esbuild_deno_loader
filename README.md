@@ -11,7 +11,7 @@ Deno module resolution for `esbuild`.
 
 ## Example
 
-This example bundles an entrypoint into a single ESM output.
+This example bundles an entrypoint into a single ESM output written to `./dist/bytes.esm.js`.
 
 ```js
 import * as esbuild from "npm:esbuild@0.20.2";
@@ -21,15 +21,13 @@ import * as esbuild from "npm:esbuild@0.20.2";
 
 import { denoPlugins } from "jsr:@luca/esbuild-deno-loader@^0.11.1";
 
-const result = await esbuild.build({
+await esbuild.build({
   plugins: [...denoPlugins()],
   entryPoints: ["https://deno.land/std@0.185.0/bytes/mod.ts"],
   outfile: "./dist/bytes.esm.js",
   bundle: true,
   format: "esm",
 });
-
-console.log(result.outputFiles);
 
 esbuild.stop();
 ```
